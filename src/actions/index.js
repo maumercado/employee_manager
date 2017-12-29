@@ -5,6 +5,8 @@ import {
     LOGIN_USER_FAILED,
     LOGIN_USER
 } from "./types";
+
+import { Actions } from "react-native-router-flux";
 import firebase from "firebase";
 
 export const emailChanged = email => {
@@ -23,6 +25,9 @@ export const passwordChanged = password => {
 
 const loginUserSuccess = (dispatch, user) => {
     dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+
+    // takes me to main scene and because employees list is first it will render that one first
+    Actions.main();
 };
 
 const loginUserFailed = dispatch => {
