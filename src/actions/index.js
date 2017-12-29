@@ -32,7 +32,7 @@ export const loginUser = ({ email, password }) => {
             try {
                 const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
                 loginUserSuccess(dispatch, user);
-            } catch (err) {
+            } catch (error) {
                 loginUserFailed(dispatch);
             }
         }
