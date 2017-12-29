@@ -1,10 +1,39 @@
-import React from "react";
-import { AppRegistry, View } from "react-native";
+import React, { Component } from "react";
+import { AppRegistry } from "react-native";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import Thunk from "redux-thunk";
+import firebase from "firebase";
 
-const App = () => {
-    return <View />;
-};
+import reducers from "./src/reducers";
+
+import LoginForm from "./src/components/LoginForm";
+
+class App extends Component {
+    componentWillMount() {
+        const config = {
+            apiKey: "AIzaSyDrnVDpQU2dSbHvbHcASCtNOjdmUJ5QQpM",
+            authDomain: "manager-8fc87.firebaseapp.com",
+            databaseURL: "https://manager-8fc87.firebaseio.com",
+            projectId: "manager-8fc87",
+            storageBucket: "manager-8fc87.appspot.com",
+            messagingSenderId: "1077887709175"
+        };
+
+        firebase.initializeApp(config);
+    }
+
+    render() {
+        const store = createStore(reducers, {}, applyMiddleware(Thunk));
+
+        return (
+            <Provider store={store}>
+                <LoginForm />
+            </Provider>
+        );
+    }
+}
 
 export default App;
 
-AppRegistry.registerComponent("tech_stack", () => App);
+AppRegistry.registerComponent("manager", () => App);
