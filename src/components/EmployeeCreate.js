@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Picker, Text } from "react-native";
 import { employeeUpdate } from "../actions";
 import { Card, CardSection, Input, Button } from "./common";
 
+const DaysOfTheWeek = [
+    "Monday",
+    "Thursday",
+    "Wednesday",
+    "Tuesday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+];
 class EmployeeCreate extends Component {
+    renderPicker() {
+        return DaysOfTheWeek.map(day => {
+            return <Picker.Item key={day} label={day} value={day} />;
+        });
+    }
+
     render() {
         return (
             <Card>
@@ -23,11 +39,28 @@ class EmployeeCreate extends Component {
                         onChangeText={value => this.props.employeeUpdate({ prop: "phone", value })}
                     />
                 </CardSection>
+
+                <CardSection style={{ flexDirection: "column" }}>
+                    <Text style={styles.pickerTextStyle}>Shift</Text>
+                    <Picker
+                        selectedValue={this.props.shift}
+                        onValueChange={value => this.props.employeeUpdate({ prop: "shift", value })}
+                    >
+                        {this.renderPicker()}
+                    </Picker>
+                </CardSection>
                 <Button>Create</Button>
             </Card>
         );
     }
 }
+
+const styles = {
+    pickerTextStyle: {
+        fontSize: 18,
+        paddingLeft: 20
+    }
+};
 
 const mapStateToProps = state => {
     const { name, phone, shift } = state.employeeForm;
