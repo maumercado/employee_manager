@@ -7,4 +7,5 @@ export const LOGIN_USER = "login_user";
 
 export const EMPLOYEE_UPDATE = "employee_update";
 export const EMPLOYEE_CREATED = "employee_created";
+export const EMPLOYEE_EDITED = "employee_edited_saved";
 export const EMPLOYEES_FETCH_SUCCESS = "employees_fetch_success";
