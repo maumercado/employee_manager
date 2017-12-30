@@ -55,3 +55,17 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
         } catch (err) {}
     };
 };
+
+export const employeeDelete = ({ uid }) => {
+    return async dispatch => {
+        try {
+            const { currentUser } = firebase.auth();
+            await firebase
+                .database()
+                .ref(`/users/${currentUser.uid}/employees/${uid}`)
+                .remove();
+
+            Actions.popTo("employeeList");
+        } catch (err) {}
+    };
+};
