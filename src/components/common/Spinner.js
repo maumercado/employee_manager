@@ -1,10 +1,13 @@
 import React from "react";
+import { CardSection } from "./";
 import { View, ActivityIndicator } from "react-native";
 const Spinner = ({ size = "large" }) => {
     return (
-        <View style={styles.spinnerStyle}>
-            <ActivityIndicator size={size} />
-        </View>
+        <CardSection>
+            <View style={styles.spinnerStyle}>
+                <ActivityIndicator size={size} />
+            </View>
+        </CardSection>
     );
 };
 
