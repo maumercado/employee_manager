@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { employeeUpdate, employeeSave, employeeDelete } from "../actions";
 import each from "lodash/each";
 import Communications from "react-native-communications";
-import { Card, Button, Confirm } from "./common";
+import { Card, Button, Confirm, CardSection } from "./common";
 import EmployeeForm from "./EmployeeForm";
 
 class EmployeeEdit extends Component {
@@ -40,11 +40,17 @@ class EmployeeEdit extends Component {
         return (
             <Card>
                 <EmployeeForm {...this.props} />
-                <Button onPress={this.onButtonPress}>Save Changes</Button>
-                <Button onPress={this.onTextPress}>Text Schedule</Button>
-                <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
-                    Delete Employee
-                </Button>
+                <CardSection>
+                    <Button onPress={this.onButtonPress}>Save Changes</Button>
+                </CardSection>
+                <CardSection>
+                    <Button onPress={this.onTextPress}>Text Schedule</Button>
+                </CardSection>
+                <CardSection>
+                    <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+                        Delete Employee
+                    </Button>
+                </CardSection>
                 <Confirm
                     visible={this.state.showModal}
                     onAccept={this.onAccept}
