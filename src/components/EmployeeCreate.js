@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Picker, Text } from "react-native";
-import { employeeUpdate } from "../actions";
+import { employeeUpdate, employeeCreate } from "../actions";
 import { Card, CardSection, Input, Button } from "./common";
 
 const DaysOfTheWeek = [
@@ -14,6 +14,11 @@ const DaysOfTheWeek = [
     "Sunday"
 ];
 class EmployeeCreate extends Component {
+    onButtonPress = () => {
+        const { name, phone, shift } = this.props;
+        this.props.employeeCreate({ name, phone, shift });
+    };
+
     renderPicker() {
         return DaysOfTheWeek.map(day => {
             return <Picker.Item key={day} label={day} value={day} />;
@@ -49,7 +54,7 @@ class EmployeeCreate extends Component {
                         {this.renderPicker()}
                     </Picker>
                 </CardSection>
-                <Button>Create</Button>
+                <Button onPress={this.onButtonPress}>Create</Button>
             </Card>
         );
     }
@@ -72,4 +77,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeCreate);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
