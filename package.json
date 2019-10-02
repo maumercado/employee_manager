@@ -27,7 +27,7 @@
     "firebase": "^4.8.1",
     "lodash": "^4.17.4",
     "react": "16.0.0",
-    "react-native": "0.50.3",
+    "react-native": "0.61.1",
     "react-native-communications": "^2.2.1",
     "react-native-router-flux": "^4.0.0-beta.25",
     "react-redux": "^5.0.6",
